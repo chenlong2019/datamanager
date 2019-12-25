@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
+// 增加用户
 namespace DataManager
 {
     public partial class AddUser : Form
