@@ -1,0 +1,16 @@
+﻿<Window x:Class="DataManager.UploadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataManager"
+        mc:Ignorable="d"
+        Title="上传器" Height="200" Width="600" Closing="Window_Closing" WindowStartupLocation="Manual" Loaded="Window_Loaded">
+    <Grid>
+        <Label Content="文件名:" Name="lb_UploadFileName" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="12px"/>
+        <Label Content="上传进度:"  HorizontalAlignment="Left" Margin="15,35,0,0" VerticalAlignment="Top" FontSize="12px"/>
+        <ProgressBar Name="progressBar_Upload" HorizontalAlignment="Left" Height="30" Margin="80,35,0,0" VerticalAlignment="Top" Width="501"/>
+        <Label Content="kb/kb" Name="lb_kbye" HorizontalAlignment="Left" Margin="80,70,0,0" VerticalAlignment="Top" FontSize="10px"/>
+        <Button Content="关闭" Name="btn_Remove" Click="btn_Remove_Click" HorizontalAlignment="Right" Margin="140,115,7.5,0" VerticalAlignment="Top" Width="75" Height="30" FontSize="12"/>
+    </Grid>
+</Window>

@@ -1,0 +1,82 @@
+﻿<Window x:Class="DataManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:local="clr-namespace:DataManager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="525" Width="790" WindowState="Maximized"  Closing="Windows_Closing">
+    <Window.Resources>
+        <local:MapViewModel x:Key="MapViewModel" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="138"/>
+            <RowDefinition Height="124"/>
+            <RowDefinition Height="233*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="355*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <esri:MapView Name="myMapView" Map="{Binding Map, Source={StaticResource MapViewModel}}" Margin="0,30,0,24.529" Grid.ColumnSpan="3" Grid.RowSpan="3" Visibility="Visible"/>
+        <StatusBar Name="sb_state" HorizontalAlignment="Left" Height="25" VerticalAlignment="Bottom" Grid.Row="2" Width="106" Margin="0,0,0,-0.471" >
+            <TextBox Name="txt_LoginUserName" Width="100" FontSize="9" Height="25"/>
+        </StatusBar>
+        <Menu Grid.ColumnSpan="3" Margin="0,0,0,0" Height="30" VerticalAlignment="Top" >
+            <MenuItem Header="管理" Height="30" Click="MenuItem_Click">
+                <MenuItem Header="管理用户" Name="ManagerUserName" Click="ManagerUserName_Click"/>
+                <Border  Background="WhiteSmoke" Name="b_Opinion2"  >
+                    <MenuItem Header="审核" Margin="-35,0,0,0" Name="Audit" Click="Audit_Click"/>
+                </Border>
+                <MenuItem Header="退出" Click="CloseMainWindow_Click"/>
+            </MenuItem>
+            <MenuItem Header="数据" >
+                <MenuItem Header="数据管理" Click="DataManager_Click"/>
+                <MenuItem Header="数据浏览" Click="BrowseData_Click"/>
+                <MenuItem Header="关闭浏览" Click="CloseBrowse_Click" />
+            </MenuItem>
+            <MenuItem Header="下载日志" Click="DownloadLog_Click"/>
+        </Menu>
+        <Grid  Margin="0,0,0,24.529" x:Name="myGrid_Page" Background="White" Grid.Row="2" Visibility="Collapsed" >
+            <ScrollViewer x:Name="scr" Margin="0,0,0,60" VerticalScrollBarVisibility="Auto">
+                <!--为面板添加自适应滚动条-->
+                <StackPanel Margin="0,0,0,60" Name="spv_Page">
+                </StackPanel>
+            </ScrollViewer>
+            <Button Content="首页" Click="btn_FirstPage_Click" HorizontalAlignment="Left" Margin="10,5,0,35" VerticalAlignment="Bottom" Width="50" Height="20"/>
+            <Button Content="末页" Click="btn_EndPage_Click" HorizontalAlignment="Left" Margin="80,5,0,35" VerticalAlignment="Bottom" Width="50" Height="20"/>
+            <Button  Content="上一页" Click="btn_Prev_Click" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" Width="50" Height="20"/>
+            <Button  Content="下一页" Click="btn_Next_Click"  HorizontalAlignment="Left" Margin="80,0,0,5" VerticalAlignment="Bottom" Width="50" Height="20"/>
+            <Label Content="结果数量" Name="lb_DataNumber" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="170,0,0,35" />
+            <Label Content="/xx" Name="lb_PageNumber" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="180,0,0,5"/>
+            <TreeView  x:Name="tv_Data" Height="1" VerticalAlignment="Bottom">
+            </TreeView>
+            <TextBox HorizontalAlignment="Left" Name="txt_PageIndex" Height="20" Margin="152,0,0,6" TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="30"/>
+            <Button Content="跳转" Click="btn_Go_Click" HorizontalAlignment="Left" Margin="210,0,0,5" VerticalAlignment="Bottom" Width="50"/>
+        </Grid>
+        <Grid  x:Name="myGrid_Condition" Margin="0,30,0,0" Background="White" Visibility="Collapsed" Grid.RowSpan="2">
+            <Label Content="拍摄时间:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,10,0,0" FontSize="12" />
+            <Label Content="职员编号:" HorizontalAlignment="Left" Margin="5,45,0,0" VerticalAlignment="Top" FontSize="12"/>
+            <Label Content="拍摄卫星:" HorizontalAlignment="Left" Margin="5,115,0,0" VerticalAlignment="Top" FontSize="12"/>
+            <DatePicker Name="dp_OrginTime"  HorizontalAlignment="Left" Margin="65,10,0,0" VerticalAlignment="Top" FontSize="12"/>
+            <Label Content="到" HorizontalAlignment="Left" Margin="145,10,0,193" FontSize="12" />
+            <DatePicker Name="dp_EndTime" Margin="165,10,30,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12"/>
+            <TextBox Name="txt_StaffNumber"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="182" Margin="65,45,0,0" Height="23" TextWrapping="Wrap" FontSize="12"/>
+            <ComboBox Name="cmb_Staellite" VerticalAlignment="Top" HorizontalAlignment="Left" Width="182" Margin="65,115,0,0" Height="23" FontSize="12"/>
+            <Button Content="查询" Click="btn_Select_Click" HorizontalAlignment="Left" Height="25" Margin="65,185,0,0" VerticalAlignment="Top" Width="75" FontSize="12"/>
+            <Button Content="重置" Click="btn_ClearCondition_Click" HorizontalAlignment="Left" Height="25" Margin="172,185,0,0" VerticalAlignment="Top" Width="72" FontSize="12"/>
+            <Label Content="入库人:" HorizontalAlignment="Left" Margin="18,80,0,0" VerticalAlignment="Top" FontSize="12"/>
+            <TextBox Name="txt_People" Height="23"  Margin="65,80,0,0" HorizontalAlignment="Left" Width="182" TextWrapping="Wrap"  VerticalAlignment="Top" />
+            <Label Content="轨道高度:" HorizontalAlignment="Left" Margin="5,150,0,58" />
+            <ComboBox Name="cmb_Orbit"  Margin="65,150,0,0" Width="182" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        </Grid>
+        <Border BorderBrush="Red" Visibility="Collapsed" x:Name="b_Opinion1" CornerRadius="1" Background="Red" BorderThickness="1" HorizontalAlignment="Left" Height="15" Width="15" Margin="0,0,0,0"  VerticalAlignment="Top" >
+            <Label Content="6" Visibility="Collapsed" FontSize="8" Name="lb_ApplicationNumber" Margin="-5,-3,-8,-8"  />
+        </Border>
+
+    </Grid>
+  
+</Window>

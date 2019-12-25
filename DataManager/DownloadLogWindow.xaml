@@ -1,0 +1,26 @@
+﻿<Window x:Class="DataManager.DownloadLogWindow"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataManager"
+        mc:Ignorable="d"
+        Title="下载日志" Height="600" Width="1000" ResizeMode="CanMinimize">
+    <Grid>
+        <WindowsFormsHost Grid.Column="0" Margin="0,60,0,0" >
+            <wf:DataGridView x:Name="DG4" Dock="Fill" SelectionMode="FullRowSelect" RowHeadersVisible="False"  />
+        </WindowsFormsHost>
+        <Rectangle Fill="#FFF4F4F5" VerticalAlignment="Top" Height="1" Margin="0,50,0,0" Stroke="Black" />
+        <Label Content="职员编号:" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_StaffNumber" HorizontalAlignment="Left" Height="25" Margin="63,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="姓名:" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_People" HorizontalAlignment="Left" Height="25" Margin="238,12,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="下载时间:" HorizontalAlignment="Left" Margin="380,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="dp_OrginTime" HorizontalAlignment="Left" Margin="438,12,0,0" VerticalAlignment="Top" FontSize="12"/>
+        <Label Content="-" HorizontalAlignment="Left" Margin="518,11,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="dp_EndTime" HorizontalAlignment="Left" Margin="531,12,0,0" VerticalAlignment="Top"/>
+        <Button Content="查询" Click="btn_Select_Click" HorizontalAlignment="Left" Margin="762,10,0,0" VerticalAlignment="Top" Height="25" Width="75"/>
+    </Grid>
+</Window>
